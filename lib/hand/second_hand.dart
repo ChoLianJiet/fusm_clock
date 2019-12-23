@@ -65,25 +65,28 @@ class SecondHandState extends State<SecondHand> with TickerProviderStateMixin {
     _previousSecond = widget.hours;
     _totalRadians = (_numberOfTurns * radiansInOneFullTurn) + widget.radians;
     _animationController.animateTo(_totalRadians, curve: Curves.bounceOut);
-    return Stack(children: <Widget>[
-      Center(
-        child: AnimatedBuilder(
-          animation: _animationController,
-          child: Container(
-            child: CustomPaint(
-              painter: _SecondHandPainter(
-                color: widget.color,
-                thickness: widget.thickness,
-                length: widget.length,),
+    return Stack(
+      children: <Widget>[
+        Center(
+          child: AnimatedBuilder(
+            animation: _animationController,
+            child: Container(
+              child: CustomPaint(
+                painter: _SecondHandPainter(
+                  color: widget.color,
+                  thickness: widget.thickness,
+                  length: widget.length,
+                ),
+              ),
             ),
+            builder: (context, child) {
+              return Transform.rotate(
+                  angle: _animationController.value, child: child);
+            },
           ),
-          builder: (context, child) {
-            return Transform.rotate(
-                angle: _animationController.value, child: child);
-          },
         ),
-      ),
-    ],);
+      ],
+    );
 //    return Center(
 //      child: AnimatedContainer(
 //        duration: Duration(hours: 1),

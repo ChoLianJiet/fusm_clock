@@ -97,7 +97,7 @@ class MinuteRabbitBearState extends State<MinuteRabbitBear> {
                   margin: EdgeInsets.only(left: 0),
                   duration: Duration(seconds: 1),
                   width: width * 0.3,
-                  height:height * 0.3,
+                  height: height * 0.3,
                 ),
               )
             : Container(),

@@ -27,9 +27,9 @@ class MinuteHand extends Hand {
         assert(radians != null),
         assert(minutes != null),
         super(
-        color: color,
-        length: length,
-      );
+          color: color,
+          length: length,
+        );
 
   @override
   State<StatefulWidget> createState() {
@@ -38,7 +38,6 @@ class MinuteHand extends Hand {
 }
 
 class MinuteHandState extends State<MinuteHand> with TickerProviderStateMixin {
-
   AnimationController _animationController;
   double _numberOfTurns;
   double _totalRadians;
@@ -57,31 +56,34 @@ class MinuteHandState extends State<MinuteHand> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    if(widget.minutes == 0 && _previousMinute != widget.minutes){
-      _numberOfTurns =_numberOfTurns + 1;
+    if (widget.minutes == 0 && _previousMinute != widget.minutes) {
+      _numberOfTurns = _numberOfTurns + 1;
     }
     _previousMinute = widget.minutes;
     _totalRadians = (_numberOfTurns * radiansInOneFullTurn) + widget.radians;
-    _animationController.animateTo(_totalRadians,curve: Curves.bounceOut);
-    return Stack(children: <Widget>[
-      Center(
-        child: AnimatedBuilder(
-          animation: _animationController,
-          child: Container(
-            child: CustomPaint(
-              painter: _MinuteHandPainter(
-                color: widget.color,
-                thickness: widget.thickness,
-                length: widget.length,),
+    _animationController.animateTo(_totalRadians, curve: Curves.bounceOut);
+    return Stack(
+      children: <Widget>[
+        Center(
+          child: AnimatedBuilder(
+            animation: _animationController,
+            child: Container(
+              child: CustomPaint(
+                painter: _MinuteHandPainter(
+                  color: widget.color,
+                  thickness: widget.thickness,
+                  length: widget.length,
+                ),
+              ),
             ),
+            builder: (context, child) {
+              return Transform.rotate(
+                  angle: _animationController.value, child: child);
+            },
           ),
-          builder: (context, child) {
-            return Transform.rotate(
-                angle: _animationController.value, child: child);
-          },
         ),
-      ),
-    ],);
+      ],
+    );
 //    return Center(
 //      child: AnimatedContainer(
 //        duration: Duration(hours: 1),

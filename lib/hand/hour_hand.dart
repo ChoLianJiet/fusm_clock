@@ -25,16 +25,15 @@ class HourHand extends Hand {
     @required this.thickness,
     @required this.radians,
     @required this.hours,
-  })
-      : assert(color != null),
+  })  : assert(color != null),
         assert(length != null),
         assert(thickness != null),
         assert(radians != null),
         assert(hours != null),
         super(
-        color: color,
-        length: length,
-      );
+          color: color,
+          length: length,
+        );
 
   @override
   State<StatefulWidget> createState() {
@@ -66,23 +65,22 @@ class HourHandState extends State<HourHand> with TickerProviderStateMixin {
         child: AnimatedContainer(
           duration: Duration(hours: 1),
           curve: Curves.linear,
-          transform: Transform
-              .translate(
-              offset: -(Offset.zero &
-              Size(
-                  widget.thickness,
-                  widget.radians % (2 * math.pi) <
-                      20 * math.pi / 180 ||
-                      widget.radians % (2 * math.pi) >
-                          340 * math.pi / 180
-                      ? widget.length * 1.5
-                      : widget.length +
-                      1.5 *
-                          (math.sin(widget.radians %
-                              (2 * math.pi) /
-                              2) *
-                              widget.length)))
-                  .center)
+          transform: Transform.translate(
+                  offset: -(Offset.zero &
+                          Size(
+                              widget.thickness,
+                              widget.radians % (2 * math.pi) <
+                                          20 * math.pi / 180 ||
+                                      widget.radians % (2 * math.pi) >
+                                          340 * math.pi / 180
+                                  ? widget.length * 1.5
+                                  : widget.length +
+                                      1.5 *
+                                          (math.sin(widget.radians %
+                                                  (2 * math.pi) /
+                                                  2) *
+                                              widget.length)))
+                      .center)
               .transform,
           width: 200,
           height: 200,
@@ -99,13 +97,13 @@ class HourHandState extends State<HourHand> with TickerProviderStateMixin {
   Widget _sunMoonInterchange() {
     return widget.hours > 6 && widget.hours < 18
         ? FlareActor(
-      'assets/flare/sun.flr',
-      animation: 'shining',
-    )
+            'assets/flare/sun.flr',
+            animation: 'shining',
+          )
         : FlareActor(
-      'assets/flare/moon.flr',
-      animation: 'shining',
-    );
+            'assets/flare/moon.flr',
+            animation: 'shining',
+          );
   }
 
   Widget _buildHourHand() {

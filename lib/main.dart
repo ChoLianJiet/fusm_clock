@@ -21,9 +21,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-          body: Stack(children: <Widget>[
-            Clock(),
-          ],)),
+          body: Stack(
+        children: <Widget>[
+          Clock(),
+        ],
+      )),
     );
   }
 }

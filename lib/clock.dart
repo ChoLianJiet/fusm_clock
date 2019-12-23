@@ -54,26 +54,32 @@ class ClockState extends State<Clock> {
         HourSky(
           hours: _now.hour,
         ),
+
         ///Sun and Moon interchange by day and night, from left to right represents 6am/pm to 6pm/am, in the middle will be 12am/pm
         HourSunMoon(
           hours: _now.hour,
         ),
+
         ///Cloud and Stars interchange by day and night, represents 10, 20, 30, 40 and 50 seconds mark
         SkyCloudsStars(
           hours: _now.hour,
         ),
+
         ///Bird and Comet interchange by day and night, represents seconds
         SecondBirdComet(
           seconds: _now.second,
           hours: _now.hour,
         ),
+
         ///Terrain: House represents 15 minute mark, trees represents 30 minute mark, and mountains represents 45 minute mark
-        Terrain(minutes: _now.minute,hours: _now.hour),
+        Terrain(minutes: _now.minute, hours: _now.hour),
+
         ///Rabbit and Bear interchange by day and night, represents minutes
         MinuteRabbitBear(
           minutes: _now.minute,
           hours: _now.hour,
         ),
+
         /// Uncomment to get clock
 //        HourHand(
 //          color: Colors.black,
